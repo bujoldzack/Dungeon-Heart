@@ -6,9 +6,26 @@ enum Direction { FRONT, BACK, SIDE }
 var current_direction = Direction.FRONT
 var previous_direction = Direction.FRONT
 @onready var anim = $AnimatedSprite2D
+@onready var cooldown = $Cooldown
+@onready var attack_cooldown = $"Attack Cooldown"
+
+var enemy_attack_range = false
+var enemy_attack_cooldown = true
+var health = 100
+var player_alive = true
+var attack_ip = false
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
+	
+	enemy_attack()
+	attack()
+	
+	
+	if health <= 0:
+		player_alive = false
+		print('dead')
+	
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 	if Input.is_action_pressed("move_right"):
@@ -38,16 +55,21 @@ func update_animation(direction):
 	elif direction.x != 0:
 		current_direction = Direction.SIDE
 	
-	if current_direction != previous_direction:
+	if current_direction != previous_direction and attack_ip == false:
 		match current_direction:
 			Direction.FRONT:
-				anim.play("idle_back")
+				if attack_ip == false:
+					anim.play("idle_back")
 			Direction.BACK:
-				anim.play("idle_front")
+				if attack_ip == false:
+					anim.play("idle_front")
 			Direction.SIDE:
-				anim.play("idle_side")
+				if attack_ip == false:
+					anim.play("idle_side")
+				else:
+					attack()
 	
-	if velocity.length() > 0:
+	if velocity.length() > 0 and attack_ip == false:
 		match current_direction:
 			Direction.FRONT:
 				anim.play("run_back")
@@ -55,7 +77,7 @@ func update_animation(direction):
 				anim.play("run_front")
 			Direction.SIDE:
 				anim.play("run_side")
-	else:
+	elif attack_ip == false:
 		match previous_direction:
 			Direction.FRONT:
 				anim.play("idle_back")
@@ -66,3 +88,46 @@ func update_animation(direction):
 
 func flip_sprite(flip):
 	anim.flip_h = flip
+
+func _on_hitbox_body_entered(body):
+	if body.has_method('enemy'):
+		enemy_attack_range = true
+
+func _on_hitbox_body_exited(body):
+	if body.has_method('enemy'):
+		enemy_attack_range = false
+
+func player():
+	pass
+
+func enemy_attack():
+	if enemy_attack_range and enemy_attack_cooldown == true:
+		health = health - 5
+		enemy_attack_cooldown = false
+		cooldown.start()
+		print(health)
+
+func attack():
+	if Input.is_action_just_pressed('attack'):
+		Global.player_current_attack = true
+		print('attack')
+		attack_ip = true
+		
+		match current_direction:
+			Direction.FRONT:
+				anim.play("attack_back")
+				attack_cooldown.start()
+			Direction.BACK:
+				anim.play("attack_front")
+				attack_cooldown.start()
+			Direction.SIDE:
+				anim.play('attack_side')
+				attack_cooldown.start()
+			
+func _on_cooldown_timeout():
+	enemy_attack_cooldown = true
+
+func _on_attack_cooldown_timeout():
+	attack_cooldown.stop()
+	Global.player_current_attack = false
+	attack_ip = false
