@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dd5287tdl01pj"]
+[gd_scene load_steps=56 format=3 uid="uid://dd5287tdl01pj"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_ej2km"]
 [ext_resource type="Texture2D" uid="uid://chbk6xoxk4qbk" path="res://assets/Mystic Pack/characters/player.png" id="1_spj4y"]
@@ -391,7 +391,29 @@ animations = [{
 size = Vector2(22, 7.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_148nx"]
-size = Vector2(27, 39)
+size = Vector2(31, 31)
+
+[sub_resource type="Animation" id="Animation_2i2h0"]
+resource_name = "damage"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 2.82843, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.470588, 0.4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e274j"]
+_data = {
+"damage": SubResource("Animation_2i2h0")
+}
 
 [node name="Main Character" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -399,25 +421,30 @@ script = ExtResource("1_ej2km")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gxywg")
-animation = &"attack_side"
+animation = &"idle_front"
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_euiai")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1.5, -14.5)
+position = Vector2(1.5, -10.5)
 shape = SubResource("RectangleShape2D_148nx")
 
 [node name="Cooldown" type="Timer" parent="."]
 
 [node name="Attack Cooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="DamageAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e274j")
+}
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
