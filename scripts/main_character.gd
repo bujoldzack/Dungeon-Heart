@@ -8,7 +8,9 @@ var previous_direction = Direction.FRONT
 @onready var anim = $AnimatedSprite2D
 @onready var cooldown = $Cooldown
 @onready var attack_cooldown = $"Attack Cooldown"
+@onready var damage_animation = $DamageAnimation
 
+var max_slime = 5
 var enemy_attack_range = false
 var enemy_attack_cooldown = true
 var health = 100
@@ -17,7 +19,7 @@ var attack_ip = false
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
-	
+
 	enemy_attack()
 	attack()
 	
@@ -103,6 +105,7 @@ func player():
 func enemy_attack():
 	if enemy_attack_range and enemy_attack_cooldown == true:
 		health = health - 5
+		damage_animation.play("damage")
 		enemy_attack_cooldown = false
 		cooldown.start()
 		print(health)
@@ -123,9 +126,10 @@ func attack():
 			Direction.SIDE:
 				anim.play('attack_side')
 				attack_cooldown.start()
-			
+
 func _on_cooldown_timeout():
 	enemy_attack_cooldown = true
+	damage_animation.stop()
 
 func _on_attack_cooldown_timeout():
 	attack_cooldown.stop()

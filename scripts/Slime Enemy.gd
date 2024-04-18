@@ -6,8 +6,9 @@ var target = null
 @onready var slime = $AnimatedSprite2D
 @onready var damage_cooldown = $"Damage Cooldown"
 @onready var death = $Death
+@onready var damage_flash = $"Damage Flash"
 
-var health = 100
+var health = 40
 var player_range = false
 var take_damage = true
 var alive = true
@@ -16,8 +17,8 @@ func _ready():
 	set_process(true)
 
 func _physics_process(delta):
-	
 	deal_damage()
+	update_health()
 	
 	if target and alive == true:
 		var direction = (target.global_position - global_position).normalized()
@@ -63,15 +64,36 @@ func deal_damage():
 	if player_range and Global.player_current_attack == true and take_damage == true:
 		health = health - 20
 		take_damage = false
+		damage_flash.play("damage")
 		damage_cooldown.start()
 		print('slime health: ', health)
-		if health <= 0:
+		if health <= 0: # Death(
+			Global.coins += generate_random_number()
+			print(Global.coins)
 			alive = false
 			slime.play('death')
 			death.start()
 
 func _on_damage_cooldown_timeout():
+	damage_flash.stop()
 	take_damage = true
 
 func _on_death_timeout():
 	self.queue_free()
+
+func update_health():
+	var healthbar = $Healthbar
+	healthbar.value = health
+	if health >= 40:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+
+func generate_random_number():
+	var random_number = randf()
+	if random_number < 0.5:
+		return 0
+	elif random_number < 0.65:
+		return 1
+	else:  
+		return 2
