@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmrfae211vctn" path="res://assets/BG_DesertMountains/background2.png" id="2_4lq2l"]
 [ext_resource type="Texture2D" uid="uid://d30bs2eshance" path="res://assets/BG_DesertMountains/background3.png" id="3_lxxam"]
 [ext_resource type="Texture2D" uid="uid://btaue0mqyc3ha" path="res://assets/UI/Dungeon-Heart-4-18-2024.png" id="5_udgmw"]
-[ext_resource type="Texture2D" uid="uid://38m66hothv72" path="res://assets/Tiny Swords (Update 010)/UI/Buttons/Button_Red_3Slides.png" id="6_t0kb0"]
+[ext_resource type="Theme" uid="uid://b8haauhyjp2ei" path="res://assets/Themes/button.tres" id="6_4xc6q"]
 
 [node name="Main Menu" type="Node"]
 script = ExtResource("1_s8upi")
@@ -52,17 +52,45 @@ position = Vector2(128, 0)
 texture = ExtResource("5_udgmw")
 centered = false
 
-[node name="PlaySprite" type="Sprite2D" parent="MainCamera"]
-position = Vector2(512, 320)
-texture = ExtResource("6_t0kb0")
-centered = false
+[node name="Menu" type="CanvasLayer" parent="MainCamera"]
 
-[node name="SettingsSprite" type="Sprite2D" parent="MainCamera"]
-position = Vector2(512, 384)
-texture = ExtResource("6_t0kb0")
-centered = false
+[node name="MainMenu" type="Control" parent="MainCamera/Menu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ExitSprite" type="Sprite2D" parent="MainCamera"]
-position = Vector2(512, 448)
-texture = ExtResource("6_t0kb0")
-centered = false
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCamera/Menu/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -25.0
+offset_right = 19.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4xc6q")
+text = "Start"
+
+[node name="Button2" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4xc6q")
+text = "Options"
+
+[node name="Button3" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4xc6q")
+text = "Quit"
