@@ -75,27 +75,27 @@ region = Rect2(192, 96, 48, 48)
 atlas = ExtResource("1_spj4y")
 region = Rect2(240, 96, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fh2gr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6vrb"]
 atlas = ExtResource("1_spj4y")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7wkx8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nmeq"]
 atlas = ExtResource("1_spj4y")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nmwo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_85isi"]
 atlas = ExtResource("1_spj4y")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vujpq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_12exe"]
 atlas = ExtResource("1_spj4y")
 region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmqos"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2euds"]
 atlas = ExtResource("1_spj4y")
 region = Rect2(192, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h5h4s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib1st"]
 atlas = ExtResource("1_spj4y")
 region = Rect2(240, 0, 48, 48)
 
@@ -273,22 +273,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fh2gr")
+"texture": SubResource("AtlasTexture_r6vrb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7wkx8")
+"texture": SubResource("AtlasTexture_1nmeq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2nmwo")
+"texture": SubResource("AtlasTexture_85isi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vujpq")
+"texture": SubResource("AtlasTexture_12exe")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rmqos")
+"texture": SubResource("AtlasTexture_2euds")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h5h4s")
+"texture": SubResource("AtlasTexture_ib1st")
 }],
 "loop": true,
 "name": &"idle_front",
@@ -424,6 +424,7 @@ y_sort_enabled = true
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gxywg")
 animation = &"idle_front"
+frame_progress = 0.0947927
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
