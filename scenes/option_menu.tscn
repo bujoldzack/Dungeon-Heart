@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch7otn4draetw"]
+
+[ext_resource type="Theme" uid="uid://b8haauhyjp2ei" path="res://assets/Themes/button.tres" id="1_40k3k"]
+[ext_resource type="Script" path="res://scripts/option_menu.gd" id="1_rjae4"]
+[ext_resource type="Texture2D" uid="uid://ctchumtdvaejf" path="res://assets/Flags/en_flag.jpg" id="2_j8cj1"]
+
+[node name="OptionMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_rjae4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.638
+anchor_top = 0.668
+anchor_right = 0.638
+anchor_bottom = 0.668
+offset_left = -431.64
+offset_top = -195.96
+offset_right = -254.64
+offset_bottom = -74.96
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="LanguageLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+text = "LANGUAGE_TITLE"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EnglishButton" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_40k3k")
+text = "ENGLISH"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpanishButton" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme = ExtResource("1_40k3k")
+text = "SPANISH"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="FrenchButton" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("1_40k3k")
+text = "FRENCH"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FullScreenLabel" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+text = "SCREEN_SIZE"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "FULL_SCREEN"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButtonM" type="Button" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_40k3k")
+text = "BACK"
+
+[node name="BackButtonG" type="Button" parent="VBoxContainer/MarginContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_40k3k")
+text = "Back"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -237.0
+offset_top = -158.0
+offset_right = 237.0
+offset_bottom = 158.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_j8cj1")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/EnglishButton" to="." method="_on_english_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer3/SpanishButton" to="." method="_on_spanish_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer2/FrenchButton" to="." method="_on_french_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/BackButtonM" to="." method="_on_back_button_m_pressed"]
