@@ -7,6 +7,8 @@ var target = null
 @onready var damage_cooldown = $"Damage Cooldown"
 @onready var death = $Death
 @onready var damage_flash = $"Damage Flash"
+@export var nav_agent: NavigationAgent2D
+
 
 var health = 40
 var player_range = false
@@ -15,6 +17,8 @@ var alive = true
 
 func _ready():
 	set_process(true)
+	nav_agent.path_desired_distance = 4
+	nav_agent.target_desired_distance = 4
 
 func _physics_process(delta):
 	deal_damage()
@@ -22,7 +26,13 @@ func _physics_process(delta):
 	
 	if target and alive == true:
 		var direction = (target.global_position - global_position).normalized()
-		velocity = direction * SPEED
+		#velocity = direction * SPEED
+		
+		if nav_agent.is_navigation_finished():
+			return
+	
+		var axis = to_local(nav_agent.get_next_path_position()).normalized()
+		velocity = axis * SPEED
 		update_animation(direction)
 		flip_sprite(direction.x < 0)
 	else:
@@ -97,3 +107,9 @@ func generate_random_number():
 		return 1
 	else:  
 		return 2
+
+func _on_recalculate_timer_timeout():
+	if target:
+		nav_agent.target_position = target.global_position
+	else:
+		return

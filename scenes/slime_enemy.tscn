@@ -184,7 +184,7 @@ animations = [{
 radius = 6.55738
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4el6"]
-radius = 187.323
+radius = 1000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_df8f5"]
 radius = 32.0
@@ -218,10 +218,14 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="Slime Enemy" type="CharacterBody2D"]
+[node name="Slime Enemy" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent")]
+collision_mask = 0
+wall_min_slide_angle = 0.0
 script = ExtResource("1_wtiqc")
+nav_agent = NodePath("Naviguation/NavigationAgent2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 32
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_odo84")
 animation = &"death"
@@ -234,8 +238,6 @@ shape = SubResource("CapsuleShape2D_gqpb5")
 [node name="Range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-light_mask = 2
-visibility_layer = 2
 shape = SubResource("CircleShape2D_h4el6")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -266,9 +268,23 @@ step = 0.1
 value = 40.0
 show_percentage = false
 
+[node name="Naviguation" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Naviguation"]
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+path_max_distance = 1000.0
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="RecalculateTimer" type="Timer" parent="Naviguation"]
+wait_time = 0.1
+autostart = true
+
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="Damage Cooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
+[connection signal="timeout" from="Naviguation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
