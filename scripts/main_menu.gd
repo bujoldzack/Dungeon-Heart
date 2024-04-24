@@ -19,9 +19,9 @@ func _on_options_button_pressed():
 	MainMenu.visible = false
 	OptionMenu.visible = true
 
-func _on_back_button_m_pressed():
-	MainMenu.visible = true
-	OptionMenu.visible = false
+#func _on_back_button_m_pressed():
+	#MainMenu.visible = true
+	#OptionMenu.visible = false
 
 func _on_quit_button_pressed():
 	get_tree().quit()

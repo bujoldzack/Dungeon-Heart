@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ch7otn4draetw"]
+[gd_scene load_steps=3 format=3 uid="uid://ch7otn4draetw"]
 
 [ext_resource type="Theme" uid="uid://b8haauhyjp2ei" path="res://assets/Themes/button.tres" id="1_40k3k"]
 [ext_resource type="Script" path="res://scripts/option_menu.gd" id="1_rjae4"]
-[ext_resource type="Texture2D" uid="uid://ctchumtdvaejf" path="res://assets/Flags/en_flag.jpg" id="2_j8cj1"]
 
 [node name="OptionMenu" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +26,7 @@ offset_right = -254.64
 offset_bottom = -74.96
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+scale = Vector2(2.3, 2.3)
 
 [node name="LanguageLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -82,37 +80,65 @@ text = "FULL_SCREEN"
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="BackButtonM" type="Button" parent="VBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MasterLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MASTER"
+
+[node name="MusicLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "MUSIC"
+
+[node name="SoundFXLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SOUND_FX"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 11
+alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="SoundFXSlider" type="HSlider" parent="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButtonM" type="Button" parent="VBoxContainer/MarginContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_40k3k")
 text = "BACK"
 
-[node name="BackButtonG" type="Button" parent="VBoxContainer/MarginContainer2"]
+[node name="BackButtonG" type="Button" parent="VBoxContainer/MarginContainer3"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_40k3k")
 text = "Back"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -237.0
-offset_top = -158.0
-offset_right = 237.0
-offset_bottom = 158.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_j8cj1")
-
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/EnglishButton" to="." method="_on_english_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer3/SpanishButton" to="." method="_on_spanish_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer2/FrenchButton" to="." method="_on_french_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer2/BackButtonM" to="." method="_on_back_button_m_pressed"]
+[connection signal="value_changed" from="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer2/SoundFXSlider" to="." method="_on_sound_fx_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/BackButtonM" to="." method="_on_back_button_m_pressed"]
