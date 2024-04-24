@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://cer8p6610wyec"]
+
+[ext_resource type="Texture2D" uid="uid://cvtsvhkpxfayb" path="res://assets/BG_DesertMountains/background1.png" id="1_ib3tq"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_s8upi"]
+[ext_resource type="Texture2D" uid="uid://bmrfae211vctn" path="res://assets/BG_DesertMountains/background2.png" id="2_4lq2l"]
+[ext_resource type="Texture2D" uid="uid://d30bs2eshance" path="res://assets/BG_DesertMountains/background3.png" id="3_lxxam"]
+[ext_resource type="Texture2D" uid="uid://btaue0mqyc3ha" path="res://assets/UI/Dungeon-Heart-4-18-2024.png" id="5_udgmw"]
+[ext_resource type="Theme" uid="uid://b8haauhyjp2ei" path="res://assets/Themes/button.tres" id="6_4xc6q"]
+[ext_resource type="PackedScene" uid="uid://ch7otn4draetw" path="res://scenes/option_menu.tscn" id="7_nfrdo"]
+
+[node name="Main Menu" type="Node"]
+script = ExtResource("1_s8upi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
+scale = Vector2(2, 1.15)
+texture = ExtResource("1_ib3tq")
+centered = false
+
+[node name="Middleground" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Middleground"]
+scale = Vector2(2, 1.15)
+texture = ExtResource("2_4lq2l")
+centered = false
+
+[node name="Frontground" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(2, 2)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Frontground"]
+scale = Vector2(2, 1.15)
+texture = ExtResource("3_lxxam")
+centered = false
+
+[node name="MainCamera" type="Camera2D" parent="."]
+offset = Vector2(640, 0)
+limit_top = 0
+limit_bottom = 720
+
+[node name="Title" type="Sprite2D" parent="MainCamera"]
+position = Vector2(128, 0)
+texture = ExtResource("5_udgmw")
+centered = false
+
+[node name="Menu" type="CanvasLayer" parent="MainCamera"]
+
+[node name="MainMenu" type="Control" parent="MainCamera/Menu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainCamera/Menu/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -25.0
+offset_right = 19.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4xc6q")
+text = "PLAY"
+
+[node name="OptionsButton" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4xc6q")
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_4xc6q")
+text = "QUIT"
+
+[node name="OptionMenu" parent="MainCamera/Menu" instance=ExtResource("7_nfrdo")]
+visible = false
+
+[connection signal="pressed" from="MainCamera/Menu/MainMenu/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainCamera/Menu/MainMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
