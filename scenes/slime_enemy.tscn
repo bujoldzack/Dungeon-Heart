@@ -184,7 +184,7 @@ animations = [{
 radius = 6.55738
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h4el6"]
-radius = 1000.0
+radius = 1245.1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_df8f5"]
 radius = 32.0
@@ -275,7 +275,6 @@ path_desired_distance = 100.0
 target_desired_distance = 100.0
 path_max_distance = 1000.0
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="RecalculateTimer" type="Timer" parent="Naviguation"]
 wait_time = 0.1

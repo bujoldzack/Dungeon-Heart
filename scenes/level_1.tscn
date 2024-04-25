@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://55gpevniybl" path="res://assets/Tiny Swords (Update 010)/Deco/16.png" id="9_w2sdn"]
 [ext_resource type="Texture2D" uid="uid://cvk8fvn2ubaip" path="res://assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/House/House_Destroyed.png" id="11_lsm38"]
 [ext_resource type="Texture2D" uid="uid://bwmufkuyynv82" path="res://assets/Tiny Swords (Update 010)/Factions/Goblins/Buildings/Wood_House/Goblin_House.png" id="13_e0i05"]
-[ext_resource type="PackedScene" uid="uid://b6rawbsvsaq4h" path="res://scenes/slime_enemy.tscn" id="15_pc7ix"]
+[ext_resource type="PackedScene" uid="uid://smq7lywpad8s" path="res://scenes/player_ui.tscn" id="17_ta72m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v02yh"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -5926,10 +5926,12 @@ layer_7/name = "limit"
 layer_7/z_index = -4
 layer_7/tile_data = PackedInt32Array(2162714, 65548, 0, 2097178, 65548, 0, 2031642, 65548, 0, 1966106, 65548, 0, 1900570, 65548, 0, 1835034, 65548, 0, 1769498, 65548, 0, 1703962, 65548, 0, 2162709, 65548, 0, 2097173, 65548, 0, 2031637, 65548, 0, 1966101, 65548, 0, 1900565, 65548, 0, 1835029, 65548, 0, 1769493, 65548, 0, 1703957, 65548, 0, 1114143, 65548, 0, 1114144, 65548, 0, 1114145, 65548, 0, 1114146, 65548, 0, 1114147, 65548, 0, 1114148, 65548, 0, 1114149, 65548, 0, 1114150, 65548, 0, 1376287, 65548, 0, 1376288, 65548, 0, 1376289, 65548, 0, 1376290, 65548, 0, 1376291, 65548, 0, 1376292, 65548, 0, 1376293, 65548, 0, 1376294, 65548, 0)
 
+[node name="Player UI" parent="." instance=ExtResource("17_ta72m")]
+
 [node name="Main Character" parent="." instance=ExtResource("2_hd746")]
 position = Vector2(85, 344)
 
-[node name="Main Camera" type="Camera2D" parent="Main Character"]
+[node name="Camera2D" type="Camera2D" parent="Main Character"]
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
@@ -6015,14 +6017,44 @@ sprite_frames = SubResource("SpriteFrames_52olb")
 autoplay = "default"
 frame_progress = 0.163908
 
-[node name="Slime Enemy" parent="." instance=ExtResource("15_pc7ix")]
-position = Vector2(370, 313)
-
-[node name="SlimeSpawner" type="Timer" parent="."]
-wait_time = 5.0
+[node name="SlimeSpawnerTimer" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
 
-[node name="SlimeSpawnPoint" type="Node2D" parent="."]
+[node name="SlimerSpawnerTimer2" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[node name="SkeletonSpawnerTimer" type="Timer" parent="."]
+wait_time = 25.0
+autostart = true
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Spawner1" type="Node2D" parent="Spawners"]
 position = Vector2(411, 755)
 
-[connection signal="timeout" from="SlimeSpawner" to="." method="_on_slime_spawner_timeout"]
+[node name="Spawner2" type="Node2D" parent="Spawners"]
+position = Vector2(803, 11)
+
+[node name="Spawner3" type="Node2D" parent="Spawners"]
+position = Vector2(263, 100)
+
+[node name="Spawner4" type="Node2D" parent="Spawners"]
+position = Vector2(36, 500)
+
+[node name="Spawner5" type="Node2D" parent="Spawners"]
+position = Vector2(570, 642)
+
+[node name="Spawner6" type="Node2D" parent="Spawners"]
+position = Vector2(1083, 655)
+
+[node name="Spawner7" type="Node2D" parent="Spawners"]
+position = Vector2(1225, 373)
+
+[node name="Spawner8" type="Node2D" parent="Spawners"]
+position = Vector2(892, 483)
+
+[connection signal="timeout" from="SlimeSpawnerTimer" to="." method="_on_slime_spawner_timer_timeout"]
+[connection signal="timeout" from="SlimerSpawnerTimer2" to="." method="_on_slimer_spawner_timer_2_timeout"]
+[connection signal="timeout" from="SkeletonSpawnerTimer" to="." method="_on_skeleton_spawner_timer_timeout"]

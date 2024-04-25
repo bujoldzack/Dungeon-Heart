@@ -8,6 +8,7 @@ var target = null
 @onready var death = $Death
 @onready var damage_flash = $"Damage Flash"
 @export var nav_agent: NavigationAgent2D
+@onready var collision_shape_2d = $CollisionShape2D
 
 
 var health = 40
@@ -79,6 +80,8 @@ func deal_damage():
 		print('slime health: ', health)
 		if health <= 0: # Death(
 			Global.coins += generate_random_number()
+			collision_shape_2d.visible = false
+			Global.score += 5
 			print(Global.coins)
 			alive = false
 			slime.play('death')
@@ -101,9 +104,9 @@ func update_health():
 
 func generate_random_number():
 	var random_number = randf()
-	if random_number < 0.5:
+	if random_number < 0.75:
 		return 0
-	elif random_number < 0.65:
+	elif random_number < 0.90:
 		return 1
 	else:  
 		return 2

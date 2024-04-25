@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
-const SPEED = 50.0
+const SPEED = 60.0
 const DETECTION_RANGE = 300
 var target = null
 
+@export var nav_agent: NavigationAgent2D
 @onready var skeleton = $AnimatedSprite2D
 @onready var damage_cooldown = $"Damage Cooldown"
 @onready var death = $Death
 @onready var damage_flash = $"Damage Flash"
+@onready var collision_shape_2d = $CollisionShape2D
 
 var health = 80
 var player_range = false
@@ -23,7 +25,13 @@ func _physics_process(delta):
 	
 	if target and alive == true:
 		var direction = (target.global_position - global_position).normalized()
-		velocity = direction * SPEED
+		#velocity = direction * SPEED
+		
+		if nav_agent.is_navigation_finished():
+			return
+		
+		var axis = to_local(nav_agent.get_next_path_position()).normalized()
+		velocity = axis * SPEED
 		update_animation(direction)
 		flip_sprite(direction.x < 0)
 	else:
@@ -69,7 +77,9 @@ func deal_damage():
 		damage_cooldown.start()
 		print('skeleton health: ', health)
 		if health <= 0: # Death(
+			collision_shape_2d.visible = false
 			Global.coins += generate_random_number()
+			Global.score += 10
 			print(Global.coins)
 			alive = false
 			skeleton.play('death')
@@ -92,9 +102,15 @@ func update_health():
 
 func generate_random_number():
 	var random_number = randf()
-	if random_number < 0.5:
+	if random_number < 0.45:
 		return 0
-	elif random_number < 0.65:
+	elif random_number < 0.80:
 		return 1
 	else:  
 		return 2
+
+func _on_recalculate_timer_timeout():
+	if target:
+		nav_agent.target_position = target.global_position
+	else:
+		return
