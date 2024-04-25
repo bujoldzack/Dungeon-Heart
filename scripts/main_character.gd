@@ -17,36 +17,41 @@ var health = 100
 var player_alive = true
 var attack_ip = false
 
+
+func _ready():
+	pass
+
 func _physics_process(delta):
 	var direction = Vector2.ZERO
 
 	enemy_attack()
 	attack()
 	
-	
 	if health <= 0:
 		player_alive = false
-		print('dead')
-	
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
-	if Input.is_action_pressed("move_up"):
-		direction.y -= 1
-	if Input.is_action_pressed("move_down"):
-		direction.y += 1
+		get_tree().paused = true
 
-	if direction.length() > 0:
-		direction = direction.normalized()
-		velocity = direction * SPEED
-		update_animation(direction)
-		flip_sprite(direction.x < 0)
-	else:
-		velocity = Vector2.ZERO
-		update_animation(Vector2.ZERO)
+	if player_alive == true:
+		if Input.is_action_pressed("move_left"):
+			direction.x -= 1
+		if Input.is_action_pressed("move_right"):
+			direction.x += 1
+		if Input.is_action_pressed("move_up"):
+			direction.y -= 1
+		if Input.is_action_pressed("move_down"):
+			direction.y += 1
+
+		if direction.length() > 0:
+			direction = direction.normalized()
+			velocity = direction * SPEED
+		
+			update_animation(direction)
+			flip_sprite(direction.x < 0)
+		else:
+			velocity = Vector2.ZERO
+			update_animation(Vector2.ZERO)
 	
-	move_and_slide()
+		move_and_slide()
 	
 func update_animation(direction):
 	previous_direction = current_direction
@@ -105,6 +110,7 @@ func player():
 func enemy_attack():
 	if enemy_attack_range and enemy_attack_cooldown == true:
 		health = health - 5
+		Global.health = health
 		damage_animation.play("damage")
 		enemy_attack_cooldown = false
 		cooldown.start()
