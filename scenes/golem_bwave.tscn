@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxjncllyrprex"]
+
+[ext_resource type="Texture2D" uid="uid://dbbbi88dqoxe0" path="res://assets/Mystic Pack/characters/Energy Wave Attack Back Sprite Sheet.png" id="1_01pwi"]
+[ext_resource type="Script" path="res://scripts/Golem BWave.gd" id="1_tutsg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iugjw"]
+atlas = ExtResource("1_01pwi")
+region = Rect2(0, 0, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8kwp"]
+atlas = ExtResource("1_01pwi")
+region = Rect2(0, 64, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x1ob"]
+atlas = ExtResource("1_01pwi")
+region = Rect2(0, 128, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7pt4"]
+atlas = ExtResource("1_01pwi")
+region = Rect2(0, 192, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjfpg"]
+atlas = ExtResource("1_01pwi")
+region = Rect2(0, 256, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r06yv"]
+atlas = ExtResource("1_01pwi")
+region = Rect2(0, 320, 160, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxgfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iugjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8kwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x1ob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7pt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjfpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r06yv")
+}],
+"loop": false,
+"name": &"BWave",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06mnw"]
+size = Vector2(128, 18.5)
+
+[node name="golem_bwave" type="Area2D"]
+script = ExtResource("1_tutsg")
+
+[node name="BackWaveSprite2D" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_rxgfd")
+animation = &"BWave"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_06mnw")
+
+[connection signal="animation_finished" from="BackWaveSprite2D" to="." method="_on_back_wave_sprite_2d_animation_finished"]

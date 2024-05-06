@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://ck02dmng6sm7k"]
+
+[ext_resource type="Script" path="res://scripts/Golem FWave.gd" id="1_jsc2x"]
+[ext_resource type="Texture2D" uid="uid://cok24i7xmtyfr" path="res://assets/Mystic Pack/characters/Energy Wave Attack Front Sprite Sheet.png" id="1_x5mil"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agswt"]
+atlas = ExtResource("1_x5mil")
+region = Rect2(0, 0, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn6hy"]
+atlas = ExtResource("1_x5mil")
+region = Rect2(0, 64, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e83bh"]
+atlas = ExtResource("1_x5mil")
+region = Rect2(0, 128, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xswvi"]
+atlas = ExtResource("1_x5mil")
+region = Rect2(0, 192, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2nfo"]
+atlas = ExtResource("1_x5mil")
+region = Rect2(0, 256, 160, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f564"]
+atlas = ExtResource("1_x5mil")
+region = Rect2(0, 320, 160, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drt5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agswt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tn6hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e83bh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xswvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2nfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f564")
+}],
+"loop": false,
+"name": &"FWave",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yts5i"]
+size = Vector2(136, 17)
+
+[node name="golem_fwave" type="Area2D"]
+script = ExtResource("1_jsc2x")
+
+[node name="FrontWaveSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_drt5j")
+animation = &"FWave"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_yts5i")
+
+[connection signal="animation_finished" from="FrontWaveSprite2D" to="." method="_on_front_wave_sprite_2d_animation_finished"]
