@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvuw5h27h3tvb"]
+
+[ext_resource type="Texture2D" uid="uid://dlcaaj6xcjilk" path="res://assets/Mystic Pack/characters/Energy Beam Sprite Sheet.png" id="1_4t1ec"]
+[ext_resource type="Script" path="res://scripts/Golem Laser.gd" id="1_tkfih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1li7"]
+atlas = ExtResource("1_4t1ec")
+region = Rect2(45, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b3jy"]
+atlas = ExtResource("1_4t1ec")
+region = Rect2(141, 0, 81, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cccy"]
+atlas = ExtResource("1_4t1ec")
+region = Rect2(237, 0, 81, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l2aa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1li7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b3jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cccy")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 5.0
+}]
+
+[node name="GolemLaser" type="Area2D"]
+script = ExtResource("1_tkfih")
+
+[node name="LaserSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(35, 15)
+sprite_frames = SubResource("SpriteFrames_l2aa0")
+animation = &"Shoot"
+frame = 2
+frame_progress = 1.0
+
+[node name="LaserCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2(35, 15)
+polygon = PackedVector2Array(-33, -22, 16, 27, 20, 27, 20, 32, -18, 32, -18, 29, -20, 27, -19, 26, -39, -13, -39, -19, -36, -22)
+
+[connection signal="animation_finished" from="LaserSprite" to="." method="_on_laser_sprite_animation_finished"]
