@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d31vd3nm25qfa"]
 
 [ext_resource type="Texture2D" uid="uid://cvtsvhkpxfayb" path="res://assets/BG_DesertMountains/background1.png" id="1_ijih6"]
-[ext_resource type="Script" path="res://scenes/level_select.gd" id="1_xfq8a"]
+[ext_resource type="Script" path="res://scripts/level_select.gd" id="1_xfq8a"]
 [ext_resource type="Texture2D" uid="uid://bmrfae211vctn" path="res://assets/BG_DesertMountains/background2.png" id="2_8shlp"]
 [ext_resource type="Texture2D" uid="uid://d30bs2eshance" path="res://assets/BG_DesertMountains/background3.png" id="3_ljwxv"]
 [ext_resource type="Theme" uid="uid://b8haauhyjp2ei" path="res://assets/Themes/button.tres" id="4_6lyag"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=13 format=3 uid="uid://djyuqog4jba2v"]
+
+[ext_resource type="Script" path="res://scripts/ghost_enemy.gd" id="1_t80hm"]
+[ext_resource type="Texture2D" uid="uid://b0l6ir0s83cpv" path="res://assets/Dungeon tileset/Ghost/skull_v2_1.png" id="2_hcews"]
+[ext_resource type="Texture2D" uid="uid://dxlcdwmv0mb30" path="res://assets/Dungeon tileset/Ghost/skull_v2_2.png" id="3_hnpx3"]
+[ext_resource type="Texture2D" uid="uid://dqi2j5vy3n2h3" path="res://assets/Dungeon tileset/Ghost/skull_v2_3.png" id="4_ilrmm"]
+[ext_resource type="Texture2D" uid="uid://bjqi705t6ncoo" path="res://assets/Dungeon tileset/Ghost/skull_v2_4.png" id="5_24inr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ucuyn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hcews")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hnpx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ilrmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_24inr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qeidl"]
+radius = 279.78
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_urhtn"]
+radius = 1245.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_16cwy"]
+radius = 32.0
+
+[sub_resource type="Animation" id="Animation_5qcwl"]
+resource_name = "damage"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.1001, 0.2),
+"transitions": PackedFloat32Array(1, 1, 2.92817, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.52549, 0.52549, 0.317647), Color(1, 0.34902, 0.34902, 0.803922), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dcy5r"]
+_data = {
+"damage": SubResource("Animation_5qcwl")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wi7q"]
+bg_color = Color(0.458824, 0.458824, 0.458824, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="GhostEnemy" type="CharacterBody2D"]
+script = ExtResource("1_t80hm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.17402, 2.17402)
+sprite_frames = SubResource("SpriteFrames_ucuyn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(-0.0201163, -0.0201163)
+shape = SubResource("CircleShape2D_qeidl")
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_urhtn")
+
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(1.1081, 1.1081)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1, 2.84217e-14)
+scale = Vector2(0.738742, 0.738742)
+shape = SubResource("CircleShape2D_16cwy")
+
+[node name="Damage Cooldown" type="Timer" parent="."]
+
+[node name="Death" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="Damage Flash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dcy5r")
+}
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -15.0
+offset_top = -19.0
+offset_right = 15.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5wi7q")
+max_value = 40.0
+step = 0.1
+value = 40.0
+show_percentage = false
+
+[node name="Naviguation" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Naviguation"]
+path_desired_distance = 100.0
+target_desired_distance = 100.0
+path_max_distance = 1000.0
+path_postprocessing = 1
+
+[node name="RecalculateTimer" type="Timer" parent="Naviguation"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="Damage Cooldown" to="." method="_on_damage_cooldown_timeout"]
+[connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
+[connection signal="timeout" from="Naviguation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
