@@ -22,9 +22,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("shop") and color_rect.visible == false:
 		color_rect.visible = true
 		shop_button.visible = false
+		get_tree().paused = true
 	elif Input.is_action_just_pressed("shop") and color_rect.visible == true:
 		color_rect.visible = false
 		shop_button.visible = true
+		get_tree().paused = false
 	
 	if Global.coins < 20:
 		heal_button.disabled = true
@@ -54,10 +56,12 @@ func _process(delta):
 func _on_shop_button_pressed():
 	color_rect.visible = true
 	shop_button.visible = false
+	get_tree().paused = true
 
 func _on_return_button_pressed():
 	color_rect.visible = false
 	shop_button.visible = true
+	get_tree().paused = false
 
 func _on_heal_button_pressed():
 	Global.coins = Global.coins - 20
