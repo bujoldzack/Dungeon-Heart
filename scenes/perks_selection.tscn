@@ -77,6 +77,9 @@ wait_time = 30.0
 [node name="Resistance Timer" type="Timer" parent="."]
 wait_time = 20.0
 
+[node name="Rage Timer" type="Timer" parent="."]
+wait_time = 15.0
+
 [connection signal="pressed" from="Shop Button" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/Heal Button" to="." method="_on_heal_button_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/Speed Button" to="." method="_on_speed_button_pressed"]
@@ -87,3 +90,4 @@ wait_time = 20.0
 [connection signal="timeout" from="Speed Timer" to="." method="_on_speed_timer_timeout"]
 [connection signal="timeout" from="Damage Timer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Resistance Timer" to="." method="_on_resistance_timer_timeout"]
+[connection signal="timeout" from="Rage Timer" to="." method="_on_rage_timer_timeout"]
