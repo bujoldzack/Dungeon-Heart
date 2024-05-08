@@ -12,3 +12,4 @@ var high_score_3 = 0
 var health = 100
 var speed = 150
 var damage = 20
+var dead = false

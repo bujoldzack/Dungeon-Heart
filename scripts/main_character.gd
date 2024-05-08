@@ -31,6 +31,7 @@ func _physics_process(delta):
 	
 	if health <= 0:
 		player_alive = false
+		Global.dead = true
 		get_tree().paused = true
 
 	if player_alive == true:
