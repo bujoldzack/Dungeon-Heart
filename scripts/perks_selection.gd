@@ -18,6 +18,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if Input.is_action_just_pressed("shop") and color_rect.visible == false:
+		color_rect.visible = true
+		shop_button.visible = false
+	elif Input.is_action_just_pressed("shop") and color_rect.visible == true:
+		color_rect.visible = false
+		shop_button.visible = true
+	
 	if Global.coins < 20:
 		heal_button.disabled = true
 		speed_button.disabled = true
