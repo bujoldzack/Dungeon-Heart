@@ -8,3 +8,4 @@ var high_score_1 = 0
 var high_score_2 = 0
 var high_score_3 = 0
 var health = 100
+var speed = 150
