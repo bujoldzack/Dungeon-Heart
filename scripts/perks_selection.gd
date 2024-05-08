@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var rage_button = $"ColorRect/VBoxContainer/Rage Button"
 @onready var speed_timer = $"Speed Timer"
 @onready var damage_timer = $"Damage Timer"
+@onready var resistance_timer = $"Resistance Timer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,6 +66,8 @@ func _on_damage_button_pressed():
 
 func _on_resistance_button_pressed():
 	Global.coins = Global.coins - 35
+	Global.health = 200
+	resistance_timer.start()
 
 func _on_rage_button_pressed():
 	Global.coins = Global.coins - 50
@@ -74,3 +77,6 @@ func _on_speed_timer_timeout():
 
 func _on_damage_timer_timeout():
 	Global.damage = 20
+
+func _on_resistance_timer_timeout():
+	Global.health = 100
