@@ -19,7 +19,7 @@ var attack_ip = false
 
 
 func _ready():
-	pass
+	Global.speed = SPEED
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
@@ -43,7 +43,7 @@ func _physics_process(delta):
 
 		if direction.length() > 0:
 			direction = direction.normalized()
-			velocity = direction * SPEED
+			velocity = direction * Global.speed
 		
 			update_animation(direction)
 			flip_sprite(direction.x < 0)
