@@ -98,6 +98,9 @@ shape = SubResource("CircleShape2D_16cwy")
 [node name="Death" type="Timer" parent="."]
 wait_time = 0.7
 
+[node name="Fireball Timer" type="Timer" parent="."]
+wait_time = 3.0
+
 [node name="Damage Flash" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_dcy5r")
@@ -134,4 +137,5 @@ autostart = true
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="timeout" from="Damage Cooldown" to="." method="_on_damage_cooldown_timeout"]
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
+[connection signal="timeout" from="Fireball Timer" to="." method="_on_fireball_timer_timeout"]
 [connection signal="timeout" from="Naviguation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]

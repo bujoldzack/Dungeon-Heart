@@ -6,9 +6,13 @@ var target = null
 @onready var ghost = $AnimatedSprite2D
 @onready var damage_cooldown = $"Damage Cooldown"
 @onready var death = $Death
+@onready var fireball_timer = $"Fireball Timer"
 @onready var damage_flash = $"Damage Flash"
 @onready var nav_agent = $Naviguation/NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D
+
+var fireball_scene: PackedScene = preload("res://scenes/fireball.tscn")
+const fireball_speed = 200
 
 var health = 40
 var player_range = false
@@ -20,6 +24,7 @@ func _ready():
 	set_process(true)
 	nav_agent.path_desired_distance = 4
 	nav_agent.target_desired_distance = 4
+	ghost.play('default')
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -86,6 +91,7 @@ func generate_random_number():
 func _on_range_body_entered(body):
 	if body.name == 'Main Character':
 		target = body
+		shoot()
 
 
 func _on_range_body_exited(body):
@@ -121,5 +127,24 @@ func _on_recalculate_timer_timeout():
 
 func _on_hitbox_area_entered(area):
 	if area.has_method("heal"):
-		if health < 40:
+		if health < 20:
 			health = health + 20
+		elif health < 40:
+			health = 40
+			
+func shoot():
+	if target:
+		var new_fireball = fireball_scene.instantiate() as RigidBody2D
+		new_fireball.global_position = global_position
+				
+		var direction = (target.global_position - global_position).normalized()
+		
+		new_fireball.gravity_scale = 0
+		new_fireball.linear_velocity  = direction * fireball_speed
+		
+		get_parent().add_child(new_fireball)
+		
+		fireball_timer.start()
+
+func _on_fireball_timer_timeout():
+	shoot()
