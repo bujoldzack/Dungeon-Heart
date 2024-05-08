@@ -7,5 +7,8 @@ var current_level = "none"
 var high_score_1 = 0
 var high_score_2 = 0
 var high_score_3 = 0
+
+# player var
 var health = 100
 var speed = 150
+var damage = 20

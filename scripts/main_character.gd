@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 150.0
+const DAMAGE = 20
 enum Direction { FRONT, BACK, SIDE }
 
 var current_direction = Direction.FRONT
@@ -20,6 +21,7 @@ var attack_ip = false
 
 func _ready():
 	Global.speed = SPEED
+	Global.damage = DAMAGE
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
