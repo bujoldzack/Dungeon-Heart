@@ -12,7 +12,7 @@ var target = null
 @onready var collision_shape_2d = $CollisionShape2D
 
 var fireball_scene: PackedScene = preload("res://scenes/fireball.tscn")
-const fireball_speed = 200
+const fireball_speed = 350
 
 var health = 40
 var player_range = false

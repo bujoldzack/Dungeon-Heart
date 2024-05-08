@@ -141,3 +141,13 @@ func _on_attack_cooldown_timeout():
 	attack_cooldown.stop()
 	Global.player_current_attack = false
 	attack_ip = false
+
+
+func _on_hitbox_area_entered(area):
+	if area.has_method("fireball"):
+		health = health - 10
+		Global.health = health
+		damage_animation.play("damage")
+		enemy_attack_cooldown = false
+		cooldown.start()
+		print(health)
