@@ -6,6 +6,7 @@ var spawners = []
 @onready var slime_spawner_timer = $SlimeSpawnerTimer
 @onready var slimer_spawner_timer_2 = $SlimerSpawnerTimer2
 @onready var skeleton_spawner_timer = $SkeletonSpawnerTimer
+@onready var background_music = $"Background Music"
 
 func _ready():
 	spawners = [$Spawners/Spawner1, $Spawners/Spawner2, $Spawners/Spawner3, $Spawners/Spawner4, $Spawners/Spawner5, $Spawners/Spawner6, $Spawners/Spawner7, $Spawners/Spawner8]
@@ -20,7 +21,9 @@ func _process(delta):
 		slime_spawner_timer.wait_time = 5
 		slimer_spawner_timer_2.wait_time = 8
 		skeleton_spawner_timer.wait_time = 15
-
+		
+	if not background_music.playing:
+		background_music.play()
 
 func _on_slime_spawner_timer_timeout():
 	var random_index = randi() % spawners.size()
