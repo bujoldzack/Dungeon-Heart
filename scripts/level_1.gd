@@ -10,6 +10,10 @@ var spawners = []
 
 func _ready():
 	spawners = [$Spawners/Spawner1, $Spawners/Spawner2, $Spawners/Spawner3, $Spawners/Spawner4, $Spawners/Spawner5, $Spawners/Spawner6, $Spawners/Spawner7, $Spawners/Spawner8]
+	Global.score = 0
+	Global.coins = 0
+	Global.health = 100
+	Global.level = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
