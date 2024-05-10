@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dlylxw0ia6hem"]
+[gd_scene load_steps=54 format=3 uid="uid://dlylxw0ia6hem"]
 
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_bwaee"]
 [ext_resource type="Texture2D" uid="uid://cp41d30jfaqru" path="res://assets/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_nqdo0"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://cvk8fvn2ubaip" path="res://assets/Tiny Swords (Update 010)/Factions/Knights/Buildings/House/House_Destroyed.png" id="11_lsm38"]
 [ext_resource type="Texture2D" uid="uid://bwmufkuyynv82" path="res://assets/Tiny Swords (Update 010)/Factions/Goblins/Buildings/Wood_House/Goblin_House.png" id="13_e0i05"]
 [ext_resource type="PackedScene" uid="uid://smq7lywpad8s" path="res://scenes/player_ui.tscn" id="17_ta72m"]
+[ext_resource type="PackedScene" uid="uid://c1sm3pwjx0qxh" path="res://scenes/perks_selection.tscn" id="18_7oxj8"]
+[ext_resource type="PackedScene" uid="uid://dtrdr8jt7u58q" path="res://scenes/dead_screen.tscn" id="19_qobpo"]
+[ext_resource type="AudioStream" uid="uid://frshc8k5blxy" path="res://assets/audios/sinnesloschen-beam-117362.mp3" id="20_oi4dk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v02yh"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -6058,6 +6061,16 @@ position = Vector2(1225, 373)
 
 [node name="Spawner8" type="Node2D" parent="Spawners"]
 position = Vector2(892, 483)
+
+[node name="Perks Selection" parent="." instance=ExtResource("18_7oxj8")]
+
+[node name="Dead Screen" parent="." instance=ExtResource("19_qobpo")]
+visible = false
+
+[node name="Background Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_oi4dk")
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="SlimeSpawnerTimer" to="." method="_on_slime_spawner_timer_timeout"]
 [connection signal="timeout" from="SlimerSpawnerTimer2" to="." method="_on_slimer_spawner_timer_2_timeout"]

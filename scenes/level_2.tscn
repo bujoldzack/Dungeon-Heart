@@ -1,8 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://de6fxcivy30jp"]
+[gd_scene load_steps=24 format=3 uid="uid://de6fxcivy30jp"]
 
+[ext_resource type="Script" path="res://scenes/level_2.gd" id="1_lt3jt"]
 [ext_resource type="Texture2D" uid="uid://bni2jcxm1p0vu" path="res://assets/Dungeon tileset/Dungeon tileset.png" id="1_olvw6"]
 [ext_resource type="PackedScene" uid="uid://dd5287tdl01pj" path="res://scenes/main_character.tscn" id="2_ejkjm"]
 [ext_resource type="PackedScene" uid="uid://b6rawbsvsaq4h" path="res://scenes/slime_enemy.tscn" id="3_cgp5x"]
+[ext_resource type="PackedScene" uid="uid://djyuqog4jba2v" path="res://scenes/ghost_enemy.tscn" id="4_qyuhi"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dsh8i"]
 polygon = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
@@ -810,6 +812,7 @@ _data = {
 
 [node name="Level 2" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_lt3jt")
 
 [node name="Map" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -895,3 +898,30 @@ autoplay = "lights"
 
 [node name="Slime Enemy" parent="." instance=ExtResource("3_cgp5x")]
 position = Vector2(510, 565)
+
+[node name="SlimeSpawnTimer" type="Timer" parent="."]
+
+[node name="SkeletonSpawnTimer" type="Timer" parent="."]
+
+[node name="GhostSpawnTimer" type="Timer" parent="."]
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Spawner1" type="Node2D" parent="Spawners"]
+
+[node name="Spawner2" type="Node2D" parent="Spawners"]
+
+[node name="Spawner3" type="Node2D" parent="Spawners"]
+
+[node name="Spawner4" type="Node2D" parent="Spawners"]
+
+[node name="Spawner5" type="Node2D" parent="Spawners"]
+
+[node name="Spawner6" type="Node2D" parent="Spawners"]
+
+[node name="Spawner7" type="Node2D" parent="Spawners"]
+
+[node name="Spawner8" type="Node2D" parent="Spawners"]
+
+[node name="GhostEnemy" parent="." instance=ExtResource("4_qyuhi")]
+position = Vector2(454, 94)

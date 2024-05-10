@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 150.0
+const DAMAGE = 20
 enum Direction { FRONT, BACK, SIDE }
 
 var current_direction = Direction.FRONT
@@ -20,7 +21,8 @@ var laser_beam = false
 
 
 func _ready():
-	pass
+	Global.speed = SPEED
+	Global.damage = DAMAGE
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
@@ -30,6 +32,7 @@ func _physics_process(delta):
 	
 	if health <= 0:
 		player_alive = false
+		Global.dead = true
 		get_tree().paused = true
 
 	if player_alive == true:
@@ -44,7 +47,7 @@ func _physics_process(delta):
 
 		if direction.length() > 0:
 			direction = direction.normalized()
-			velocity = direction * SPEED
+			velocity = direction * Global.speed
 		
 			update_animation(direction)
 			flip_sprite(direction.x < 0)
@@ -152,6 +155,13 @@ func _on_hitbox_area_entered(area):
 		laser_beam = true
 	if area.has_method('enemy'):
 		enemy_attack_range = true
+	if area.has_method("fireball"):
+		health = health - 10
+		Global.health = health
+		damage_animation.play("damage")
+		enemy_attack_cooldown = false
+		cooldown.start()
+		print(health)
 
 func _on_hitbox_area_exited(area):
 	if area.has_method('laser_BM'):
