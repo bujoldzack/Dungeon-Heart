@@ -70,7 +70,7 @@ func _on_hitbox_body_entered(body):
 func _on_hitbox_body_exited(body):
 	if body.has_method('player'):
 		player_range = false
-		
+
 func deal_damage():
 	if player_range and Global.player_current_attack == true and take_damage == true:
 		health = health - 20
@@ -116,3 +116,8 @@ func _on_recalculate_timer_timeout():
 		nav_agent.target_position = target.global_position
 	else:
 		return
+
+func _on_hitbox_area_entered(area):
+	if area.has_method('heal'):
+		if health < 40:
+			health = health + 20

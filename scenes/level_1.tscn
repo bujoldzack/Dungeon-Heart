@@ -6029,6 +6029,10 @@ autostart = true
 wait_time = 25.0
 autostart = true
 
+[node name="GolemSpawnerTimer" type="Timer" parent="."]
+wait_time = 35.0
+autostart = true
+
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="Spawner1" type="Node2D" parent="Spawners"]
@@ -6058,3 +6062,4 @@ position = Vector2(892, 483)
 [connection signal="timeout" from="SlimeSpawnerTimer" to="." method="_on_slime_spawner_timer_timeout"]
 [connection signal="timeout" from="SlimerSpawnerTimer2" to="." method="_on_slimer_spawner_timer_2_timeout"]
 [connection signal="timeout" from="SkeletonSpawnerTimer" to="." method="_on_skeleton_spawner_timer_timeout"]
+[connection signal="timeout" from="GolemSpawnerTimer" to="." method="_on_golem_spawner_timer_timeout"]

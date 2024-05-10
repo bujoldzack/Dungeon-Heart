@@ -114,3 +114,8 @@ func _on_recalculate_timer_timeout():
 		nav_agent.target_position = target.global_position
 	else:
 		return
+
+func _on_hitbox_area_entered(area):
+	if area.has_method('heal'):
+		if health < 80:
+			health = health + 40

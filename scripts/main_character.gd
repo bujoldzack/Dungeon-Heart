@@ -16,6 +16,7 @@ var enemy_attack_cooldown = true
 var health = 100
 var player_alive = true
 var attack_ip = false
+var laser_beam = false
 
 
 func _ready():
@@ -109,7 +110,10 @@ func player():
 
 func enemy_attack():
 	if enemy_attack_range and enemy_attack_cooldown == true:
-		health = health - 5
+		if laser_beam:
+			health = health - 40
+		else:
+			health = health - 5
 		Global.health = health
 		damage_animation.play("damage")
 		enemy_attack_cooldown = false
@@ -141,3 +145,17 @@ func _on_attack_cooldown_timeout():
 	attack_cooldown.stop()
 	Global.player_current_attack = false
 	attack_ip = false
+
+func _on_hitbox_area_entered(area):
+	if area.has_method('laser_BM'):
+		enemy_attack_range = true
+		laser_beam = true
+	if area.has_method('enemy'):
+		enemy_attack_range = true
+
+func _on_hitbox_area_exited(area):
+	if area.has_method('laser_BM'):
+		enemy_attack_range = false
+		laser_beam = false
+	if area.has_method('enemy'):
+		enemy_attack_range = false
