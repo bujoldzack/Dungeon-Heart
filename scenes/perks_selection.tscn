@@ -14,7 +14,7 @@ offset_left = -47.0
 offset_bottom = 31.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
-text = "Shop"
+text = "SHOP_BUTTON"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -43,31 +43,31 @@ theme_override_constants/separation = 40
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
-text = "Shop"
+text = "SHOP_LABEL"
 
 [node name="Heal Button" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Heal to full | 20 coins"
+text = "HEAL_BUTTON"
 
 [node name="Speed Button" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Speed Increase (30s) | 20 coins"
+text = "SPEED_BUTTON"
 
 [node name="Damage Button" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Damage Increase (30s) | 20 coins"
+text = "DAMAGE_BUTTON"
 
 [node name="Resistance Button" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Resistance (15s) | 35 coins"
+text = "RESISTANCE_BUTTON"
 
 [node name="Rage Button" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Rage (15s) | 50 coins"
+text = "RAGE_BUTTON"
 
 [node name="Return Button" type="Button" parent="ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "Return to the game"
+text = "RETURN_BUTTON"
 
 [node name="Speed Timer" type="Timer" parent="."]
 wait_time = 30.0

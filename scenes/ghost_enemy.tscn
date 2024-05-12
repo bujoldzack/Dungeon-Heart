@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djyuqog4jba2v"]
+[gd_scene load_steps=13 format=3 uid="uid://dkwjbaspauih0"]
 
 [ext_resource type="Script" path="res://scripts/ghost_enemy.gd" id="1_t80hm"]
 [ext_resource type="Texture2D" uid="uid://b0l6ir0s83cpv" path="res://assets/Dungeon tileset/Ghost/skull_v2_1.png" id="2_hcews"]
@@ -72,6 +72,9 @@ corner_radius_bottom_left = 3
 [node name="GhostEnemy" type="CharacterBody2D"]
 script = ExtResource("1_t80hm")
 
+[node name="FireBallPosition" type="Node2D" parent="."]
+position = Vector2(15, 0)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.17402, 2.17402)
 sprite_frames = SubResource("SpriteFrames_ucuyn")
@@ -100,6 +103,7 @@ wait_time = 0.7
 
 [node name="Fireball Timer" type="Timer" parent="."]
 wait_time = 3.0
+autostart = true
 
 [node name="Damage Flash" type="AnimationPlayer" parent="."]
 libraries = {

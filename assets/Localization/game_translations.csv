@@ -10,3 +10,16 @@ SPANISH,Spanish,Espagnol,Español
 BACK,Back,Retour,Atrás
 SCREEN_SIZE,Screen Size,Taille de l'Écran,Tamaño de la Pantalla
 FULL_SCREEN,Full Screen,Plein Écran,Pantalla Completa
+SHOP_BUTTON,Shop,Boutique,Tienda
+SHOP_LABEL,Shop,Boutique,Tienda
+HEAL_BUTTON,Heal to full | 20 coins,Restaurer toute la Barre de Vie | 20 pièces,Restaurar toda la vida | 20 monedas
+SPEED_BUTTON,Speed Increase (30s) | 20 coins,Augmenter la vitesse (30s) | 20 pièces,Aumento de velocidad (30s) | 20 monedas
+DAMAGE_BUTTON,Damage Increase (30s) | 20 coins,Augmenter les dégats (30s) | 20 pièces,Aumento de daño (30s) | 20 monedas
+RESISTANCE_BUTTON,Resistance (15s) | 35 coins,Endurance (15s) | 35 pièces,Resistencia (15s) | 35 monedas
+RAGE_BUTTON,Rage (15s) | 50 coins,Colère (15s) | 50 pièces,Ira (15s) | 50 monedas
+RETURN_BUTTON,Return to the game,Retourne au jeu,Regresar al juego
+DEAD_LABEL,You just died!,Vous-avez mort!,Acabas de morir!
+SCORE_LABEL,Your Score: ,Record: ,Tu puntaje: 
+HSCORE_LABEL,Highest Score: ,Meilleur record: ,Record: 
+RESTART_BUTTON,Restart,Redémarrer le niveau,Reiniciar
+BACK_BUTTON,Back to Main Menu,Retourne au Menu,Regresar al Menú

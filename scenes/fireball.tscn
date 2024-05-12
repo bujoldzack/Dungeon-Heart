@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctgl7soinp8pu"]
+[gd_scene load_steps=5 format=3 uid="uid://bqylf8rma08cy"]
 
 [ext_resource type="Script" path="res://scenes/fireball.gd" id="1_45pi2"]
 [ext_resource type="Texture2D" uid="uid://dg70wr4qh282y" path="res://assets/Dungeon tileset/Ghost/Dungeon_Character_2.png" id="1_ecblf"]
-[ext_resource type="Script" path="res://scenes/Area2D.gd" id="3_wkste"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hba2v"]
+radius = 10.0499
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_60vcc"]
 
@@ -13,10 +15,12 @@ script = ExtResource("1_45pi2")
 scale = Vector2(2.09143, 2.09143)
 texture = ExtResource("1_ecblf")
 
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("3_wkste")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hba2v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="FireBallArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2DF" type="CollisionShape2D" parent="FireBallArea2D"]
 shape = SubResource("CircleShape2D_60vcc")
 
 [node name="Despawn" type="Timer" parent="."]
@@ -24,5 +28,5 @@ wait_time = 5.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="FireBallArea2D" to="." method="_on_fire_ball_area_2d_body_entered"]
 [connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]

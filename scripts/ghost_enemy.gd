@@ -134,17 +134,23 @@ func _on_hitbox_area_entered(area):
 			
 func shoot():
 	if target:
+		print('shoot2')
 		var new_fireball = fireball_scene.instantiate() as RigidBody2D
-		new_fireball.global_position = global_position
-				
+		var fireball_position = $FireBallPosition.position
+		new_fireball.position = fireball_position
+
 		var direction = (target.global_position - global_position).normalized()
-		
+
 		new_fireball.gravity_scale = 0
-		new_fireball.linear_velocity  = direction * fireball_speed
-		
-		get_parent().add_child(new_fireball)
-		
+		new_fireball.linear_velocity = direction * fireball_speed
+
+		if ghost.flip_h:
+			new_fireball.position.x = -15
+
+		add_child(new_fireball)
+
 		fireball_timer.start()
 
 func _on_fireball_timer_timeout():
+	print('shoot fireball')
 	shoot()

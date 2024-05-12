@@ -14,10 +14,10 @@ func enemy():
 func ghost():
 	pass
 
-func _on_area_2d_body_entered(body):
-	if body.has_method("player"):
-		queue_free()
-
-
 func _on_despawn_timeout():
+	print('end')
 	queue_free()
+
+func _on_fire_ball_area_2d_body_entered(body):
+	if not body.has_method("enemy"):
+		queue_free()
