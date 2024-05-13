@@ -10,6 +10,7 @@ var previous_direction = Direction.FRONT
 @onready var cooldown = $Cooldown
 @onready var attack_cooldown = $"Attack Cooldown"
 @onready var damage_animation = $DamageAnimation
+@onready var slash = $Slash
 
 var max_slime = 5
 var enemy_attack_range = false
@@ -125,6 +126,7 @@ func enemy_attack():
 
 func attack():
 	if Input.is_action_just_pressed('attack'):
+		slash.play()
 		Global.player_current_attack = true
 		print('attack')
 		attack_ip = true
