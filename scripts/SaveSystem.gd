@@ -3,12 +3,24 @@ extends Node
 const savePath = "user://save_data.save"
 
 var save_dict = {
-	"language" : 'en'
+	"language" : 'en',
+	"highscore_1" : 0,
+	"highscore_2" : 0,
+	"highscore_3" : 0
 }
 
 func update_language(language: String):
 	save_dict.language = language
 
+func update_highscore_1(highscore_1: int):
+	save_dict.highscore_1 = highscore_1
+	
+func update_highscore_2(highscore_2: int):
+	save_dict.highscore_3 = highscore_2
+
+func update_highscore_3(highscore_3: int):
+	save_dict.highscore_3 = highscore_3
+	
 func save_game_data():
 	var save_file = FileAccess.open(savePath, FileAccess.WRITE)
 	var json_data = JSON.stringify(save_dict)
