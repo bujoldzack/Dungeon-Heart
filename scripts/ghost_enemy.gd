@@ -56,7 +56,7 @@ func flip_sprite(flip):
 	
 func deal_damage():
 	if player_range and Global.player_current_attack == true and take_damage == true:
-		health = health - 20
+		health = health - Global.damage
 		take_damage = false
 		damage_flash.play("damage")
 		damage_cooldown.start()

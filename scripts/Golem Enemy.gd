@@ -71,7 +71,7 @@ func deal_damage():
 		if not animation_locked:
 			golem.play('damage')
 			animation_locked = true
-		health = health - 20
+		health = health - Global.damage
 		take_damage = false
 		damage_flash.play("damage")
 		damage_cooldown.start()
