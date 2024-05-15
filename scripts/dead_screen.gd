@@ -5,10 +5,7 @@ extends CanvasLayer
 @onready var highest_score_label = $"ColorRect/VBoxContainer/HBoxContainer2/HScore Variable Label"
 
 func _ready():
-	SaveSystem.load_game_data_bytes()
-	Global.high_score_1 = SaveSystem.save_dict.highscore_1
-	Global.high_score_2 = SaveSystem.save_dict.highscore_2
-	Global.high_score_3 = SaveSystem.save_dict.highscore_3
+	pass
 
 func _process(_delta):
 	if Global.dead == true:
@@ -48,4 +45,6 @@ func _on_restart_button_pressed():
 	_reload_scene()
 
 func _on_back_button_pressed():
-	pass # Replace with function body.
+	Global.dead = false
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/level_select.tscn")

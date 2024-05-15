@@ -11,6 +11,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SaveSystem.load_game_data_bytes()
+	Global.high_score_1 = SaveSystem.save_dict.highscore_1
+	Global.high_score_2 = SaveSystem.save_dict.highscore_2
+	Global.high_score_3 = SaveSystem.save_dict.highscore_3
+	
 	level_1_score.text = "High Score: " + str(Global.high_score_1)
 	level_2_score.text = "High Score: " + str(Global.high_score_2)
 	level_3_score.text = "High Score: " + str(Global.high_score_3)
