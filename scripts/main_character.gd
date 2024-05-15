@@ -31,6 +31,9 @@ func _physics_process(delta):
 	enemy_attack()
 	attack()
 	
+	if Input.is_action_just_pressed("coins"):
+		Global.coins += 100
+	
 	if health <= 0:
 		player_alive = false
 		Global.dead = true
