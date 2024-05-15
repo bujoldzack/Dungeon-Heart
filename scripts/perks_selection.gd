@@ -66,21 +66,25 @@ func _on_return_button_pressed():
 func _on_heal_button_pressed():
 	Global.coins = Global.coins - 20
 	Global.health = 100
+	quit()
 
 func _on_speed_button_pressed():
 	Global.coins = Global.coins - 20
 	Global.speed = 300
 	speed_timer.start()
+	quit()
 
 func _on_damage_button_pressed():
 	Global.coins = Global.coins - 20
 	Global.damage = 40
 	damage_timer.start()
+	quit()
 
 func _on_resistance_button_pressed():
 	Global.coins = Global.coins - 35
 	Global.health = 200
 	resistance_timer.start()
+	quit()
 
 func _on_rage_button_pressed():
 	Global.coins = Global.coins - 50
@@ -88,6 +92,7 @@ func _on_rage_button_pressed():
 	Global.speed = 300
 	Global.damage = 40
 	rage_timer.start()
+	quit()
 
 func _on_speed_timer_timeout():
 	Global.speed = 150
@@ -102,3 +107,8 @@ func _on_rage_timer_timeout():
 	Global.health = 100
 	Global.speed = 150
 	Global.damage = 20
+
+func quit():
+	color_rect.visible = false
+	shop_button.visible = true
+	get_tree().paused = false
