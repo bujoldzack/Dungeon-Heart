@@ -115,6 +115,16 @@ offset_top = 77.0
 offset_right = 1259.0
 offset_bottom = 100.0
 
+[node name="IntructionsLabel" type="Label" parent="."]
+offset_left = 565.0
+offset_top = 482.0
+offset_right = 714.0
+offset_bottom = 557.0
+text = "WASD to move
+
+Space Bar to attack"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer2/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="VBoxContainer3/Level3" to="." method="_on_level_3_pressed"]
