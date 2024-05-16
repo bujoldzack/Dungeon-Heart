@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d31vd3nm25qfa"]
+[gd_scene load_steps=10 format=3 uid="uid://d31vd3nm25qfa"]
 
 [ext_resource type="Texture2D" uid="uid://cvtsvhkpxfayb" path="res://assets/BG_DesertMountains/background1.png" id="1_ijih6"]
 [ext_resource type="Script" path="res://scripts/level_select.gd" id="1_xfq8a"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dj5xnl5afdtcv" path="res://assets/Level Preview/level1.png" id="5_j8732"]
 [ext_resource type="Texture2D" uid="uid://dp1hh3sve2l66" path="res://assets/Level Preview/level2.png" id="7_whws4"]
 [ext_resource type="Texture2D" uid="uid://chr6b77hhcsf0" path="res://assets/Level Preview/level3.png" id="8_5tl0d"]
+
+[sub_resource type="SystemFont" id="SystemFont_exfih"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
 
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_xfq8a")
@@ -120,11 +124,30 @@ offset_left = 565.0
 offset_top = 482.0
 offset_right = 714.0
 offset_bottom = 557.0
-text = "WASD to move
-
-Space Bar to attack"
+text = "INSTR1"
 horizontal_alignment = 1
+
+[node name="IntructionsLabel2" type="Label" parent="."]
+offset_left = 566.0
+offset_top = 537.0
+offset_right = 715.0
+offset_bottom = 612.0
+text = "INSTR2"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="IntructionsLabel2"]
+offset_left = -526.0
+offset_top = 127.0
+offset_right = -493.0
+offset_bottom = 147.0
+scale = Vector2(1.91238, 1.91238)
+size_flags_horizontal = 4
+theme = ExtResource("4_6lyag")
+theme_override_fonts/font = SubResource("SystemFont_exfih")
+theme_override_font_sizes/font_size = 15
+text = "BACK"
 
 [connection signal="pressed" from="VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer2/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="VBoxContainer3/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="IntructionsLabel2/BackButton" to="." method="_on_back_button_pressed"]

@@ -26,3 +26,10 @@ BACK_BUTTON,Back to Main Menu,Retourne au Menu,Regresar al Menú
 MASTER,Master,Master,Master
 MUSIC,Music,Musique,Musica
 SOUND_FX,Sound FX,FX Son,Efecto FX
+Level_One,Level One,Liveau Un,Nivel Uno
+Level_Two,Level Two,Liveau Deux,Nivel Dos
+Level_Three,Level Three,Liveau Trois,Nivel Tres
+INSTR1,WASD to move,WASD à déplacer,WASD para moverse
+INSTR2,Space Bar to attack,Barre d'espace pour attaquer,Barra espaciadora para atacar
+LOCK1,Score 100 points in level 1 to unlock this level.,Marquez 100 points au niveau 1 pour débloquer ce niveau.,Consigue 100 puntos en el nivel 1 para desbloquear este nivel.
+LOCK2,Score 200 points in level 2 to unlock this level.,Marquez 200 points au niveau 2 pour débloquer ce niveau.,Consigue 200 puntos en el nivel 2 para desbloquear este nivel.

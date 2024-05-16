@@ -16,16 +16,16 @@ func _ready():
 	Global.high_score_2 = SaveSystem.save_dict.highscore_2
 	Global.high_score_3 = SaveSystem.save_dict.highscore_3
 	
-	level_1_score.text = "High Score: " + str(Global.high_score_1)
-	level_2_score.text = "High Score: " + str(Global.high_score_2)
-	level_3_score.text = "High Score: " + str(Global.high_score_3)
+	level_1_score.text = tr("HSCORE_LABEL") + str(Global.high_score_1)
+	level_2_score.text = tr("HSCORE_LABEL") + str(Global.high_score_2)
+	level_3_score.text = tr("HSCORE_LABEL") + str(Global.high_score_3)
 	
 	if Global.high_score_1 < 100:
 		level_2_button.disabled = true 
-		lock_label_1.text = "Score 100 points in level 1 to unlock this level."
+		lock_label_1.text = tr("LOCK1")
 	if Global.high_score_2 < 200:
 		level_3_button.disabled = true 
-		lock_label_2.text = "Score 200 points in level 2 to unlock this level."
+		lock_label_2.text = tr("LOCK2")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,3 +43,7 @@ func _on_level_2_pressed():
 
 func _on_level_3_pressed():
 	get_tree().change_scene_to_file("res://scenes/level_3.tscn")
+
+
+func _on_back_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
