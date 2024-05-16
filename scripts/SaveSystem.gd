@@ -16,7 +16,7 @@ func update_highscore_1(highscore_1: int):
 	save_dict.highscore_1 = highscore_1
 	
 func update_highscore_2(highscore_2: int):
-	save_dict.highscore_3 = highscore_2
+	save_dict.highscore_2 = highscore_2
 
 func update_highscore_3(highscore_3: int):
 	save_dict.highscore_3 = highscore_3
