@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cer8p6610wyec"]
+[gd_scene load_steps=11 format=3 uid="uid://cer8p6610wyec"]
 
 [ext_resource type="Texture2D" uid="uid://cvtsvhkpxfayb" path="res://assets/BG_DesertMountains/background1.png" id="1_ib3tq"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_s8upi"]
@@ -7,6 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://btaue0mqyc3ha" path="res://assets/UI/Dungeon-Heart-4-18-2024.png" id="5_udgmw"]
 [ext_resource type="Theme" uid="uid://g7e8c41wman5" path="res://assets/Themes/generic_theme.tres" id="6_4xc6q"]
 [ext_resource type="PackedScene" uid="uid://ch7otn4draetw" path="res://scenes/option_menu.tscn" id="7_nfrdo"]
+
+[sub_resource type="SystemFont" id="SystemFont_ru26x"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_hqhbe"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_udv1n"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
 
 [node name="Main Menu" type="Node"]
 script = ExtResource("1_s8upi")
@@ -60,6 +72,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -84,16 +97,22 @@ theme_override_constants/separation = 10
 [node name="StartButton" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_4xc6q")
+theme_override_fonts/font = SubResource("SystemFont_ru26x")
+theme_override_font_sizes/font_size = 15
 text = "PLAY"
 
 [node name="OptionsButton" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_4xc6q")
+theme_override_fonts/font = SubResource("SystemFont_hqhbe")
+theme_override_font_sizes/font_size = 15
 text = "OPTIONS"
 
 [node name="QuitButton" type="Button" parent="MainCamera/Menu/MainMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_4xc6q")
+theme_override_fonts/font = SubResource("SystemFont_udv1n")
+theme_override_font_sizes/font_size = 15
 text = "QUIT"
 
 [node name="OptionMenu" parent="MainCamera/Menu" instance=ExtResource("7_nfrdo")]

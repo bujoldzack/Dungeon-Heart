@@ -2,7 +2,7 @@ extends Control
 
 var language: String
 
-var main_menu_scene = preload("res://scenes/main_menu.tscn")
+var main_menu_scene = preload("res://scenes/main_menus.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

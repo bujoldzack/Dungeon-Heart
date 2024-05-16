@@ -1,15 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://ch7otn4draetw"]
+[gd_scene load_steps=8 format=3 uid="uid://ch7otn4draetw"]
 
 [ext_resource type="Theme" uid="uid://g7e8c41wman5" path="res://assets/Themes/generic_theme.tres" id="1_40k3k"]
 [ext_resource type="Script" path="res://scripts/option_menu.gd" id="1_rjae4"]
+
+[sub_resource type="SystemFont" id="SystemFont_l6ofl"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_j6bye"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_uen25"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_l6xun"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_ekwut"]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true
 
 [node name="OptionMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 170.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 size_flags_horizontal = 4
 script = ExtResource("1_rjae4")
 
@@ -44,6 +67,8 @@ layout_mode = 2
 [node name="EnglishButton" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("1_40k3k")
+theme_override_fonts/font = SubResource("SystemFont_l6ofl")
+theme_override_font_sizes/font_size = 15
 text = "ENGLISH"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
@@ -52,6 +77,8 @@ layout_mode = 2
 [node name="SpanishButton" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer3"]
 layout_mode = 2
 theme = ExtResource("1_40k3k")
+theme_override_fonts/font = SubResource("SystemFont_j6bye")
+theme_override_font_sizes/font_size = 15
 text = "SPANISH"
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
@@ -60,6 +87,8 @@ layout_mode = 2
 [node name="FrenchButton" type="Button" parent="VBoxContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 theme = ExtResource("1_40k3k")
+theme_override_fonts/font = SubResource("SystemFont_uen25")
+theme_override_font_sizes/font_size = 15
 text = "FRENCH"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -125,6 +154,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_40k3k")
+theme_override_fonts/font = SubResource("SystemFont_l6xun")
+theme_override_font_sizes/font_size = 15
 text = "BACK"
 
 [node name="BackButtonG" type="Button" parent="VBoxContainer/MarginContainer3"]
@@ -132,6 +163,8 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_40k3k")
+theme_override_fonts/font = SubResource("SystemFont_ekwut")
+theme_override_font_sizes/font_size = 15
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MarginContainer/EnglishButton" to="." method="_on_english_button_pressed"]
