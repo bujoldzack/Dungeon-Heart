@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmrfae211vctn" path="res://assets/BG_DesertMountains/background2.png" id="2_4lq2l"]
 [ext_resource type="Texture2D" uid="uid://d30bs2eshance" path="res://assets/BG_DesertMountains/background3.png" id="3_lxxam"]
 [ext_resource type="Texture2D" uid="uid://btaue0mqyc3ha" path="res://assets/UI/Dungeon-Heart-4-18-2024.png" id="5_udgmw"]
-[ext_resource type="Theme" uid="uid://g7e8c41wman5" path="res://assets/Themes/generic_theme.tres" id="6_4xc6q"]
+[ext_resource type="Theme" uid="uid://k7aelhfw1fab" path="res://assets/Themes/generic_theme.tres" id="6_4xc6q"]
 [ext_resource type="PackedScene" uid="uid://ch7otn4draetw" path="res://scenes/option_menu.tscn" id="7_nfrdo"]
 
 [sub_resource type="SystemFont" id="SystemFont_ru26x"]
